@@ -20,6 +20,7 @@ spring:
 logging:
   level:
     root: info
+    org.springframework.data: debug
     org.github.labcabrera: debug
 
 app:

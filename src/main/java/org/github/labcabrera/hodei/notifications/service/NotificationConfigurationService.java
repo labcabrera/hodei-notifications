@@ -34,8 +34,9 @@ public class NotificationConfigurationService {
 		}
 	}
 
-	@Cacheable
+	@Cacheable("configurations")
 	public boolean isEnabled(String connector, String module, String operation) {
+		log.debug("Reading notification configuration for {}:{}:{}", connector, module, operation);
 		Query query = new Query(Criteria.where("module").is(module).and("connector").is(connector));
 		NotificationConfiguration configuration = mongoTemplate.findOne(query, NotificationConfiguration.class);
 
