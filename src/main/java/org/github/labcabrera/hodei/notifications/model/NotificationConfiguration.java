@@ -22,10 +22,14 @@ public class NotificationConfiguration {
 
 	private String connector;
 
-	private Boolean enabled;
+	private Boolean enabledErrors;
+
+	private Boolean enabledNotifications;
 
 	private String module;
 
 	private List<String> excluedOperations;
+
+	private List<String> recipients;
 
 }

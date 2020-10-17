@@ -2,16 +2,39 @@
 
 Ejemplo de uso de Spring Cloud Stream con el binder de RabbitMQ para consumir una cola de notificaciones.
 
-Para hacer una prueba simplemente publicar un mensaje directamente en Rabbit:
+Dependiendo de la configuración se enviarán por correo y telegram los mensajes recibidos.
+
+Para hacer una prueba simplemente publicar un mensaje directamente en Rabbit.
 
 ----
 {
-	"type":"NOTIFICATION",
+	"type":"notification",
 	"module":"customers",
 	"operation": "customer-creation",
 	"subject": "Customer 343Z created",
 	"body": "Lorem ipsum"
 }
+----
+
+O un mensaje de error:
+
+----
+{
+	"type":"error",
+	"module":"policies",
+	"operation": "customer-creation",
+	"subject": "Policy 234X creation error",
+	"body": "Lorem ipsum"
+}
+----
+
+Para ejecutar la aplicación deberemos tener las siguientes variables de entorno:
+
+----
+TELEGRAM_TOKEN=*****
+MAIL_HOST=*****
+MAIL_USERNAME=*****
+MAIL_PASSWORD=*****
 ----
 
 

@@ -32,7 +32,23 @@ public class HodeiNotificationsApplication implements CommandLineRunner {
 			mongoTemplate.save(NotificationConfiguration.builder()
 				.connector("telegram")
 				.module("customers")
-				.enabled(true)
+				.enabledNotifications(true)
+				.enabledErrors(true)
+				.excluedOperations(Arrays.asList("entity-synchronization"))
+				.build());
+			mongoTemplate.save(NotificationConfiguration.builder()
+				.connector("mail")
+				.module("customers")
+				.enabledNotifications(true)
+				.enabledErrors(true)
+				.excluedOperations(Arrays.asList("entity-synchronization"))
+				.recipients(Arrays.asList("lab.cabrera@gmail.com"))
+				.build());
+			mongoTemplate.save(NotificationConfiguration.builder()
+				.connector("telegram")
+				.module("policies")
+				.enabledNotifications(false)
+				.enabledErrors(true)
 				.excluedOperations(Arrays.asList("entity-synchronization"))
 				.build());
 		}
