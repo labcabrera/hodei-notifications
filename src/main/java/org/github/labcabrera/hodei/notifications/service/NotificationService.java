@@ -1,5 +1,7 @@
 package org.github.labcabrera.hodei.notifications.service;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.github.labcabrera.hodei.notifications.dto.NotificationRequest;
@@ -21,16 +23,16 @@ public class NotificationService {
 	private MongoTemplate mongoTemplate;
 
 	@Autowired
-	private TelegramNotificationService telegramService;
+	private Converter<NotificationRequest, NotificationEntity> converter;
 
 	@Autowired
-	private Converter<NotificationRequest, NotificationEntity> converter;
+	private List<NotificationConsumer> consumers;
 
 	public void processNotification(@Valid NotificationRequest notification) {
 		log.debug("Received notification {}", notification);
 		NotificationEntity entity = converter.convert(notification);
 		mongoTemplate.save(entity);
-		telegramService.processNotification(entity);
+		consumers.stream().forEach(e -> e.accept(entity));
 	}
 
 }

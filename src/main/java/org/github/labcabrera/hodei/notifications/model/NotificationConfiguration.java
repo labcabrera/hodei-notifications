@@ -10,15 +10,17 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "telegramNotificationConfigurations")
+@Document(collection = "notificationConfigurations")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TelegramNotificationConfiguration {
+public class NotificationConfiguration {
 
 	@Id
 	private String id;
+
+	private String connector;
 
 	private Boolean enabled;
 
