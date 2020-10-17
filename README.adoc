@@ -37,6 +37,37 @@ MAIL_USERNAME=*****
 MAIL_PASSWORD=*****
 ----
 
+Docker
+
+
+----
+./gradlew clean build docker -x test
+
+docker run -d \
+  --name hodei-notifications \
+  --network cnp-shared \
+  -h hodei-notifications \
+  -e MAIL_HOST=${MAIL_HOST} \
+  -e MAIL_USERNAME=${MAIL_USERNAME} \
+  -e MAIL_PASSWORD=${MAIL_PASSWORD} \
+  -e TELEGRAM_TOKEN=${TELEGRAM_TOKEN} \
+  -e JAVA_OPTS="-Xmx256M -Xms128M" \
+  labcabrera/hodei-notifications:latest
+----
+
+Nota: en este caso se utiliza el network cnp-shared donde deben estar corriendo mongo (hostname cnp-mongo) y rabbit (cnp-rabbit).
+
+En el caso de no utilizar un network especifico habria que eliminar la opción `--network cnp-shared`
+
+
+== Features
+
+- Spring Cloud Stream
+- RabbitMQ
+- Mongo
+- Actuator
+- Cache
+- Validation
 
 == Resources
 

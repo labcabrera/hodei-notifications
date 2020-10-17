@@ -1,11 +1,12 @@
 plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'com.palantir.docker' version '0.20.1'
 	id 'java'
 }
 
-group = 'com.cnp.arc'
-version = '0.0.1-SNAPSHOT'
+group = 'org.github.labcabrera'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
@@ -52,4 +53,12 @@ dependencyManagement {
 
 test {
 	useJUnitPlatform()
+}
+
+docker {
+	name "labcabrera/${jar.baseName}"
+	tags 'latest'
+	dockerfile file('Docker/Dockerfile')
+	files jar.archivePath
+	buildArgs(['JAR_FILE': "${jar.archiveName}"])
 }

@@ -18,11 +18,14 @@ spring:
                   #ValidationException: true
                   ConstraintViolationException: false
 
+  rabbitmq:
+    host: cnp-rabbit
+
   data:
     mongodb:
       database: hodei-notifications
       port: 27017
-      host: localhost
+      host: cnp-mongo
 
   mail:
     host: ${MAIL_HOST}
