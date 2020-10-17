@@ -1,5 +1,7 @@
 package org.github.labcabrera.hodei.notifications.service.telegram;
 
+import java.util.function.Consumer;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -15,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Component
 @Slf4j
-public class TelegramClient {
+public class TelegramClient implements Consumer<String> {
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -26,7 +28,8 @@ public class TelegramClient {
 	@Value("${app.notifications.telegram.url}")
 	private String url;
 
-	public void sendMessage(String message) {
+	@Override
+	public void accept(String message) {
 		try {
 			log.debug("Sending notification {} ({})", message, chatId);
 			String json = String.format("{\"chat_id\":\"%s\",\"text\":\"%s\"}", chatId, message);
@@ -39,6 +42,5 @@ public class TelegramClient {
 		catch (Exception ex) {
 			log.error("Telegram comunnication failure: {}", ex);
 		}
-
 	}
 }

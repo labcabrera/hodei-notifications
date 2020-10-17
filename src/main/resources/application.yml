@@ -11,11 +11,12 @@ spring:
           group: process
           consumer:
             max-attempts: 3
-            back-off-initial-interval: 100
+            back-off-initial-interval: 1000
             retryable-exceptions:
               javax:
                 validation:
-                  ValidationException: false
+                  #ValidationException: true
+                  ConstraintViolationException: false
 logging:
   level:
     root: info
