@@ -17,6 +17,13 @@ spring:
                 validation:
                   #ValidationException: true
                   ConstraintViolationException: false
+
+  data:
+    mongodb:
+      database: hodei-notifications
+      port: 27017
+      host: localhost
+
 logging:
   level:
     root: info
