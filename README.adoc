@@ -86,6 +86,7 @@ Docker
 ----
 ./gradlew clean build docker -x test
 
+
 docker run -d \
   --name hodei-notifications \
   --network cnp-shared \
