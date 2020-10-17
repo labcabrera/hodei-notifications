@@ -1,0 +1,23 @@
+= Hodei notifications module
+
+Ejemplo de uso de Spring Cloud Stream con el binder de RabbitMQ para consumir una cola de notificaciones.
+
+Para hacer una prueba simplemente publicar un mensaje directamente en Rabbit:
+
+----
+{
+	"type":"NOTIFICATION",
+	"module":"customers",
+	"operation": "customer-creation",
+	"subject": "Customer 343Z created",
+	"body": "Lorem ipsum"
+}
+----
+
+
+== Resources
+
+- https://cloud.spring.io/spring-cloud-static/spring-cloud-stream/current/reference/html/spring-cloud-stream.html
+- https://github.com/spring-cloud/spring-cloud-stream-samples
+- https://developer.okta.com/blog/2020/04/15/spring-cloud-stream
+

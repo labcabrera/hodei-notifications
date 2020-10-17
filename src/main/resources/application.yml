@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: hodei-notifications
+  cloud:
+    stream:
+      function:
+        definition: processNotification
+      bindings:
+        processNotification-in-0:
+          destination: hodei-notifications
+          group: process
+          consumer:
+            max-attempts: 3
+            back-off-initial-interval: 100
+            retryable-exceptions:
+              javax:
+                validation:
+                  ValidationException: false
+logging:
+  level:
+    root: info
+    org.github.labcabrera: debug
+
+app:
+  notifications:
+    telegram:
+      # Debemos configurar la variable de entorno TELEGRAM_TOKEN
+      chat-id: -330068436
+      url: https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage
