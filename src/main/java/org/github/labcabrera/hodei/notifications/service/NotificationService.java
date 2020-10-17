@@ -1,10 +1,11 @@
 package org.github.labcabrera.hodei.notifications.service;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 
-import org.github.labcabrera.hodei.notifications.model.NotificationRequest;
+import org.github.labcabrera.hodei.notifications.dto.NotificationRequest;
+import org.github.labcabrera.hodei.notifications.model.NotificationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -22,20 +23,14 @@ public class NotificationService {
 	@Autowired
 	private TelegramNotificationService telegramService;
 
-	public void processNotification(NotificationRequest notification) {
+	@Autowired
+	private Converter<NotificationRequest, NotificationEntity> converter;
+
+	public void processNotification(@Valid NotificationRequest notification) {
 		log.debug("Received notification {}", notification);
-		try {
-			process(notification);
-		}
-		catch (ConstraintViolationException ex) {
-			log.error("Received invalid notification: {}", ex.getMessage());
-		}
-	}
-
-	private void process(@Valid NotificationRequest notification) {
-		mongoTemplate.save(notification);
-		telegramService.processNotification(notification);
-
+		NotificationEntity entity = converter.convert(notification);
+		mongoTemplate.save(entity);
+		telegramService.processNotification(entity);
 	}
 
 }

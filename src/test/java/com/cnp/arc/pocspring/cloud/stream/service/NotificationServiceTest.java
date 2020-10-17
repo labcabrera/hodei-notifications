@@ -1,12 +1,10 @@
 package com.cnp.arc.pocspring.cloud.stream.service;
 
-import java.time.LocalDateTime;
-
 import javax.validation.ConstraintViolationException;
 
 import org.github.labcabrera.hodei.notifications.HodeiNotificationsApplication;
-import org.github.labcabrera.hodei.notifications.model.NotificationRequest;
-import org.github.labcabrera.hodei.notifications.model.NotificationType;
+import org.github.labcabrera.hodei.notifications.dto.NotificationRequest;
+import org.github.labcabrera.hodei.notifications.dto.NotificationType;
 import org.github.labcabrera.hodei.notifications.service.NotificationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,9 +30,8 @@ public class NotificationServiceTest {
 	@Test
 	public void testSuccess() {
 		NotificationRequest notification = NotificationRequest.builder()
-			.type(NotificationType.ERROR)
+			.type(NotificationType.NOTIFICATION)
 			.module("customers")
-			.timestamp(LocalDateTime.now())
 			.operation("customer-modification")
 			.subject("Customer 123 has been modified")
 			.body("Lorem ipsum")
