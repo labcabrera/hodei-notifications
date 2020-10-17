@@ -10,7 +10,6 @@ import org.github.labcabrera.hodei.notifications.service.NotificationConfigurati
 import org.github.labcabrera.hodei.notifications.service.NotificationConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 import lombok.extern.slf4j.Slf4j;
 
 @Service
-@ConditionalOnBean(JavaMailSender.class)
 @Slf4j
 public class MailNotificationConsumer implements NotificationConsumer {
 
@@ -35,14 +33,21 @@ public class MailNotificationConsumer implements NotificationConsumer {
 	public void accept(NotificationEntity notification) {
 		String connector = getConnectorName();
 		String module = notification.getModule();
-		if (notificationConfigurationService.isEnabled(connector, notification)) {
-			NotificationConfiguration configuration = notificationConfigurationService.readConfiguration(connector, module)
-				.orElseThrow(() -> new RuntimeException("Missing configuration"));
-			List<String> recipients = configuration.getRecipients();
-			String subject = notification.getSubject();
-			String body = notification.getBody();
-			sendMessage(subject, body, recipients);
+		if (!notificationConfigurationService.isEnabled(connector, notification)) {
+			log.debug("Mail notifications are not enabled");
+			return;
 		}
+		NotificationConfiguration configuration = notificationConfigurationService.readConfiguration(connector, module)
+			.orElseThrow(() -> new RuntimeException("Missing configuration"));
+		List<String> recipients = configuration.getRecipients();
+		if (recipients == null || recipients.isEmpty()) {
+			log.warn("No recipients has been configured");
+			return;
+		}
+		String subject = notification.getSubject();
+		String body = notification.getBody();
+		sendMessage(subject, body, recipients);
+
 	}
 
 	@Override
