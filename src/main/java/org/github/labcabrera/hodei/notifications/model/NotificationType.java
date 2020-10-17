@@ -1,4 +1,4 @@
-package org.github.labcabrera.hodei.notifications.dto;
+package org.github.labcabrera.hodei.notifications.model;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 

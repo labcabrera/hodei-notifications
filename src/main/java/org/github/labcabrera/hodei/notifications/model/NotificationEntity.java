@@ -2,7 +2,6 @@ package org.github.labcabrera.hodei.notifications.model;
 
 import java.time.LocalDateTime;
 
-import org.github.labcabrera.hodei.notifications.dto.NotificationType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

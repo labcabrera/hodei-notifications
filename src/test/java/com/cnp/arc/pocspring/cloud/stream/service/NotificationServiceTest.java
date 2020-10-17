@@ -4,7 +4,7 @@ import javax.validation.ConstraintViolationException;
 
 import org.github.labcabrera.hodei.notifications.HodeiNotificationsApplication;
 import org.github.labcabrera.hodei.notifications.dto.NotificationRequest;
-import org.github.labcabrera.hodei.notifications.dto.NotificationType;
+import org.github.labcabrera.hodei.notifications.model.NotificationType;
 import org.github.labcabrera.hodei.notifications.service.NotificationService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -2,9 +2,9 @@ package org.github.labcabrera.hodei.notifications.service;
 
 import java.util.Optional;
 
-import org.github.labcabrera.hodei.notifications.dto.NotificationType;
 import org.github.labcabrera.hodei.notifications.model.NotificationConfiguration;
 import org.github.labcabrera.hodei.notifications.model.NotificationEntity;
+import org.github.labcabrera.hodei.notifications.model.NotificationType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -40,7 +40,7 @@ public class NotificationConfigurationService {
 			log.debug("Module {} is disabled for notifications using connector {}", module, connector);
 			return false;
 		}
-		if (configuration.getExcluedOperations() != null && configuration.getExcluedOperations().contains(operation)) {
+		if (configuration.getExcludedOperations() != null && configuration.getExcludedOperations().contains(operation)) {
 			log.debug("Excluded operation {} in module {} for connector {}", operation, module, connector);
 			return false;
 		}

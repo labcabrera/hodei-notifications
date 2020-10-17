@@ -1,0 +1,34 @@
+[
+	{
+		"connector": "telegram",
+		"module": "customers",
+		"enabledNotifications": true,
+		"enabledErrors": true,
+		"excludedOperations": [
+			"entity-synchronization"
+		]
+	},
+	{
+		"connector": "mail",
+		"module": "customers",
+		"enabledNotifications": true,
+		"enabledErrors": true,
+		"excludedOperations": [
+			"entity-synchronization"
+		],
+		"recipients": [
+			"luis.barragan.gfi@cnppartners.eu",
+			"lab.cabrera@gmail.com"
+		]
+	},
+	{
+		"connector": "telegram",
+		"module": "policies",
+		"enabledNotifications": true,
+		"enabledErrors": true,
+		"excludedOperations": [
+			"draft-creation",
+			"entity-synchronization"
+		]
+	}
+]

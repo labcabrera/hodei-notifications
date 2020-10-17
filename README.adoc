@@ -22,7 +22,7 @@ O un mensaje de error:
 {
 	"type":"error",
 	"module":"policies",
-	"operation": "customer-creation",
+	"operation": "policy-creation",
 	"subject": "Policy 234X creation error",
 	"body": "Lorem ipsum"
 }

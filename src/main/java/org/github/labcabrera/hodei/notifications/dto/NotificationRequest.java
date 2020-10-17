@@ -3,6 +3,8 @@ package org.github.labcabrera.hodei.notifications.dto;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.github.labcabrera.hodei.notifications.model.NotificationType;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

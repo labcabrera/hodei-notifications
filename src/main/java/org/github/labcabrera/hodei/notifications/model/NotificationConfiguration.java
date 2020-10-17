@@ -28,7 +28,7 @@ public class NotificationConfiguration {
 
 	private String module;
 
-	private List<String> excluedOperations;
+	private List<String> excludedOperations;
 
 	private List<String> recipients;
 
