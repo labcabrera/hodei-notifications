@@ -15,7 +15,6 @@ spring:
             retryable-exceptions:
               javax:
                 validation:
-                  #ValidationException: true
                   ConstraintViolationException: false
 
   rabbitmq:

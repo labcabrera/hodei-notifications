@@ -28,6 +28,49 @@ O un mensaje de error:
 }
 ----
 
+== Spring Cloud Stream
+
+En nuestro caso la aplicación simplemente leerá de una cola los mensajes. Para realizar el binding simplemente tendremos que definir
+el bean:
+
+----
+@Configuration
+public class BindingConfig {
+
+	@Bean
+	public Consumer<NotificationRequest> processNotification(NotificationService service) {
+		return service::processNotification;
+	}
+
+}
+----
+
+Después, simplemente en nuestra configuración estableceremos los valores:
+
+----
+spring:
+  cloud:
+    stream:
+      function:
+        definition: processNotification
+      bindings:
+        processNotification-in-0:
+          destination: hodei-notifications
+          group: process
+          consumer:
+            max-attempts: 3
+            back-off-initial-interval: 1000
+            retryable-exceptions:
+              javax:
+                validation:
+                  ConstraintViolationException: false
+----
+
+En este caso debe coincidir el nombre de nuestro bean con el valor `{name}-in-0`.
+
+Esta configuración generará el exchange `hodei-notifications` conectado a la cola `hodei-notifications.process` con
+la routing key `#` (todos los mensajes se enrutan a la dicha cola).
+
 Para ejecutar la aplicación deberemos tener las siguientes variables de entorno:
 
 ----
