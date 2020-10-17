@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'org.github.labcabrera'
-version = '1.0.0-SNAPSHOT'
+version = version
 sourceCompatibility = '11'
 
 configurations {
