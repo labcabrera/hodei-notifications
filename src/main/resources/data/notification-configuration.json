@@ -1,7 +1,7 @@
 [
 	{
 		"connector": "telegram",
-		"module": "customers",
+		"module": "hodei-customers",
 		"enabledNotifications": true,
 		"enabledErrors": true,
 		"excludedOperations": [
@@ -10,7 +10,7 @@
 	},
 	{
 		"connector": "mail",
-		"module": "customers",
+		"module": "hodei-customers",
 		"enabledNotifications": true,
 		"enabledErrors": true,
 		"excludedOperations": [
@@ -23,7 +23,7 @@
 	},
 	{
 		"connector": "telegram",
-		"module": "policies",
+		"module": "hodei-policies",
 		"enabledNotifications": true,
 		"enabledErrors": true,
 		"excludedOperations": [

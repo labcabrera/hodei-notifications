@@ -9,7 +9,7 @@ Para hacer una prueba simplemente publicar un mensaje directamente en Rabbit.
 ----
 {
 	"type":"notification",
-	"module":"customers",
+	"module":"hodei-customers",
 	"operation": "customer-creation",
 	"subject": "Customer 343Z created",
 	"body": "Lorem ipsum"
@@ -21,7 +21,7 @@ O un mensaje de error:
 ----
 {
 	"type":"error",
-	"module":"policies",
+	"module":"hodei-policies",
 	"operation": "policy-creation",
 	"subject": "Policy 234X creation error",
 	"body": "Lorem ipsum"
