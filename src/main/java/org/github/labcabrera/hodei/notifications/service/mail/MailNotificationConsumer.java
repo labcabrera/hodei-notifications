@@ -62,7 +62,7 @@ public class MailNotificationConsumer implements NotificationConsumer {
 			MimeMessageHelper helper = new MimeMessageHelper(msg, true);
 			helper.setTo(recipients.toArray(new String[recipients.size()]));
 			helper.setSubject(subject);
-			helper.setText(body);
+			helper.setText(body != null ? body : "");
 			mailSender.send(msg);
 		}
 		catch (Exception ex) {
